@@ -1,241 +1,236 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hub de Sistemas - Grilazer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hub de Sistemas • Grilazer</title>
 
-  <style>
-    :root{
-      --bg1:#0b1220;
-      --bg2:#0f1a33;
-      --text:#e9eefc;
-      --muted:#a9b6da;
-      --accent:#4da3ff;
-      --accent2:#7c5cff;
-      --radius:18px;
-    }
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#111827;
+  --card2:#1f2937;
+  --accent:#3b82f6;
+  --accent2:#06b6d4;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+}
 
-    *{box-sizing:border-box}
+*{box-sizing:border-box}
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1000px 600px at 20% 10%, #182a5a 0%, transparent 60%),
-        radial-gradient(900px 700px at 90% 0%, #2a1b66 0%, transparent 55%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    }
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+background:radial-gradient(circle at top,#1e293b,#020617);
+color:var(--text);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:30px;
+}
 
-    .wrap{ width:min(1100px,100%); }
+.wrap{
+width:1200px;
+max-width:100%;
+}
 
-    .top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:18px;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
 
-    .brand{ display:flex; gap:12px; align-items:center; }
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+}
 
-    .logo{
-      width:46px;height:46px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      user-select:none;
-    }
+.logo{
+width:50px;
+height:50px;
+border-radius:14px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+font-size:18px;
+}
 
-    .title h1{ margin:0;font-size:18px; }
-    .title p{ margin:2px 0 0;font-size:13px;color:var(--muted); }
+.title h1{
+margin:0;
+font-size:22px;
+}
 
-    .clock{
-      font-size:13px;
-      color:var(--muted);
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:12px;
-      background:rgba(0,0,0,.25);
-    }
+.title span{
+font-size:13px;
+color:var(--muted);
+}
 
-    .panel{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.2));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 20px 50px rgba(0,0,0,.45);
-      overflow:hidden;
-    }
+.clock{
+font-size:14px;
+background:rgba(255,255,255,0.05);
+padding:10px 14px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,0.1);
+}
 
-    .header{ padding:18px 22px; border-bottom:1px solid rgba(255,255,255,.1); }
-    .header h2{ margin:0 0 6px;font-size:22px; }
-    .header p{ margin:0;font-size:14px;color:var(--muted); }
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:16px;
-      padding:18px;
-    }
+.card{
+background:linear-gradient(180deg,var(--card),var(--card2));
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+padding:20px;
+transition:0.2s;
+position:relative;
+overflow:hidden;
+}
 
-    .card{
-      border-radius:16px;
-      padding:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.25));
-      transition:.15s;
-    }
+.card:hover{
+transform:translateY(-4px);
+border-color:var(--accent);
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
 
-    .card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(77,163,255,.45);
-    }
+.icon{
+font-size:22px;
+margin-bottom:10px;
+}
 
-    .icon{
-      width:36px;height:36px;
-      border-radius:12px;
-      background:rgba(255,255,255,.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:10px;
-      font-size:18px;
-    }
+.card h3{
+margin:0 0 6px;
+font-size:18px;
+}
 
-    .card h3{ margin:0 0 6px;font-size:17px; }
-    .card p{ margin:0;font-size:13px;color:var(--muted); }
+.card p{
+margin:0;
+font-size:13px;
+color:var(--muted);
+}
 
-    .actions{ margin-top:14px;display:flex;gap:10px;flex-wrap:wrap; }
+.btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 16px;
+border-radius:10px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+color:white;
+text-decoration:none;
+font-weight:600;
+font-size:13px;
+}
 
-    .btn{
-      padding:10px 14px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#fff;
-      font-weight:700;
-      font-size:13px;
-      text-decoration:none;
-      border:none;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
+.btn:hover{
+filter:brightness(1.1);
+}
 
-    footer{
-      padding:12px 18px;
-      border-top:1px solid rgba(255,255,255,.1);
-      font-size:12px;
-      color:var(--muted);
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-  </style>
+footer{
+margin-top:25px;
+text-align:center;
+font-size:12px;
+color:var(--muted);
+}
+
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <div class="logo">GZ</div>
-        <div class="title">
-          <h1>Hub de Sistemas</h1>
-          <p>Grilazer • Acesso rápido</p>
-        </div>
-      </div>
-      <div class="clock" id="clock">--/--/----</div>
-    </div>
 
-    <div class="panel">
-      <div class="header">
-        <h2>Escolha o sistema</h2>
-        <p>Central de acesso aos aplicativos internos da empresa</p>
-      </div>
+<div class="wrap">
 
-      <div class="grid">
-        <div class="card">
-          <div class="icon">🚗</div>
-          <h3>Agendamento de Carros</h3>
-          <p>Reservas, viagens e controle de veículos.</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://testeculpani.github.io/agendamentocarro/">Abrir</a>
-          </div>
-        </div>
+<div class="header">
 
-        <div class="card">
-          <div class="icon">📦</div>
-          <h3>Carregamento de Expedição</h3>
-          <p>Controle e conferência de carregamentos.</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://testeculpani.github.io/carregamento/">Abrir</a>
-          </div>
-        </div>
+<div class="brand">
+<div class="logo">GZ</div>
+<div class="title">
+<h1>Hub de Sistemas</h1>
+<span>Central Digital • Grilazer</span>
+</div>
+</div>
 
-        <div class="card">
-          <div class="icon">🦺</div>
-          <h3>Entrega de EPI</h3>
-          <p>Registro e controle de entrega de EPIs.</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://grilazer-seguranca-d-g6hz.glide.page/">Abrir</a>
-          </div>
-        </div>
+<div class="clock" id="clock"></div>
 
-        <div class="card">
-          <div class="icon">🛠️</div>
-          <h3>Preventivas de Máquinas</h3>
-          <p>Controle de manutenções preventivas.</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://testeculpani.github.io/preventivas/">Abrir</a>
-          </div>
-        </div>
+</div>
 
-        <div class="card">
-          <div class="icon">📋</div>
-          <h3>Coordenação de Manutenção</h3>
-          <p>Gestão das tarefas e manutenções (Asana).</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://app.asana.com/1/1201027737127338/project/1201027737182971/board/1205114839921538">Abrir</a>
-          </div>
-        </div>
+<div class="grid">
 
-        <div class="card">
-          <div class="icon">📢</div>
-          <h3>Informações e Atualizações de Produtos</h3>
-          <p>Comunicados, novidades e atualizações de produtos.</p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener" href="https://testeculpani.github.io/informativo/">Abrir</a>
-          </div>
-        </div>
-      </div>
+<div class="card">
+<div class="icon">🚗</div>
+<h3>Agendamento de Carros</h3>
+<p>Controle e reserva dos veículos da empresa.</p>
+<a class="btn" target="_blank" href="https://testeculpani.github.io/agendamentocarro/">Abrir sistema</a>
+</div>
 
-      <footer>
-        <div>Grilazer © Hub interno</div>
-        <div>GitHub Pages</div>
-      </footer>
-    </div>
-  </div>
+<div class="card">
+<div class="icon">📦</div>
+<h3>Carregamento de Expedição</h3>
+<p>Registro e controle dos carregamentos.</p>
+<a class="btn" target="_blank" href="https://testeculpani.github.io/carregamento/">Abrir sistema</a>
+</div>
 
-  <script>
-    function tick(){
-      const d = new Date();
-      document.getElementById('clock').textContent =
-        d.toLocaleDateString('pt-BR') + " " +
-        d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
-    }
-    tick();
-    setInterval(tick, 15000);
-  </script>
+<div class="card">
+<div class="icon">🦺</div>
+<h3>Entrega de EPI</h3>
+<p>Controle de entrega de equipamentos de segurança.</p>
+<a class="btn" target="_blank" href="https://grilazer-seguranca-d-g6hz.glide.page/">Abrir sistema</a>
+</div>
+
+<div class="card">
+<div class="icon">🛠</div>
+<h3>Preventivas de Máquinas</h3>
+<p>Gestão das manutenções preventivas.</p>
+<a class="btn" target="_blank" href="https://testeculpani.github.io/preventivas/">Abrir sistema</a>
+</div>
+
+<div class="card">
+<div class="icon">📋</div>
+<h3>Coordenação de Manutenção</h3>
+<p>Gestão de tarefas e projetos da manutenção.</p>
+<a class="btn" target="_blank" href="https://app.asana.com/1/1201027737127338/project/1201027737182971/board/1205114839921538">Abrir sistema</a>
+</div>
+
+<div class="card">
+<div class="icon">📢</div>
+<h3>Informações e Atualizações</h3>
+<p>Central de comunicados e atualizações de produtos.</p>
+<a class="btn" target="_blank" href="https://testeculpani.github.io/informativo/">Abrir sistema</a>
+</div>
+
+<div class="card">
+<div class="icon">📷</div>
+<h3>Registro de Fotos</h3>
+<p>Registro de fotos de certificados de matéria prima.</p>
+<a class="btn" target="_blank" href="https://testeculpani.github.io/registro-fotos/">Abrir sistema</a>
+</div>
+
+</div>
+
+<footer>
+Hub de Sistemas Grilazer • Central de aplicações internas
+</footer>
+
+</div>
+
+<script>
+function tick(){
+const d=new Date()
+document.getElementById("clock").innerText=
+ d.toLocaleDateString("pt-BR")+" "+
+ d.toLocaleTimeString("pt-BR",{hour:'2-digit',minute:'2-digit'})
+}
+
+tick()
+setInterval(tick,10000)
+</script>
+
 </body>
 </html>
